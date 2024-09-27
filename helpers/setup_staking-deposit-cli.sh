@@ -3,8 +3,7 @@
 # run from $HOME/ using "sudo sh /home/$_user/vouch/setup_pulse-staking-deposit-cli"
 
 # Download the command line tool for staking on an internet connected computer using git
-apt update
-apt install git
+cd $HOME
 git clone https://github.com/Vouchrun/pulse-staking-deposit-cli.git
 
 

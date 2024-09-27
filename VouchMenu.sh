@@ -42,8 +42,21 @@ show_menu() {
 # Ensure dialog is installed
 if ! command -v dialog &> /dev/null
 then
-    echo "dialog could not be found, please install it to run this script."
-    exit
+    echo "Dialog could not be found. This script requires dialog to run."
+    read -p "Would you like to install dialog? (Y/N): " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        if [ "$(uname)" == "Darwin" ]; then
+            brew install dialog
+        else
+            sudo apt-get update
+            sudo apt-get install -y dialog
+        fi
+    else
+        echo "Exiting script. Please install dialog manually to run this script."
+        exit
+    fi
 fi
 
 # Loop to display the menu after each action

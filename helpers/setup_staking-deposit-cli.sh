@@ -9,11 +9,11 @@ git clone https://github.com/Vouchrun/pulse-staking-deposit-cli.git
 
 # Install the staking tool on your clean computer
 cd pulse-staking-deposit-cli
-sudo add-apt-repository universe
-sudo apt update
-sudo apt install python3-pip
-sudo pip3 install -r requirements.txt
-sudo python3 setup.py install
+sudo -i add-apt-repository universe
+sudo -i apt update
+sudo -i apt install python3-pip
+sudo -i pip3 install -r requirements.txt
+sudo -i python3 setup.py install
 # ./deposit.sh install
 # apt install -y jq
 

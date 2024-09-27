@@ -18,7 +18,7 @@ git clone https://github.com/Vouchrun/vouch-val-tools.git
 ## Run the GUI menu
 ```sh 
 cd vouch-val-tools
-sudo chmod +x VouchMenu.sh
+find "$HOME/vouch-val-tools" -type f -name "*.sh" -exec chmod +x {} \;
 ./VouchMenu.sh
 ```
 

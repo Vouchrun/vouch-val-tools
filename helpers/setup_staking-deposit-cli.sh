@@ -9,10 +9,23 @@ git clone https://github.com/Vouchrun/pulse-staking-deposit-cli.git
 
 # Install the staking tool on your clean computer
 cd pulse-staking-deposit-cli
-add-apt-repository universe
-apt update
-apt install python3-pip
-pip3 install -r requirements.txt
-python3 setup.py install
+sudo add-apt-repository universe
+sudo apt update
+sudo apt install python3-pip
+sudo pip3 install -r requirements.txt
+sudo python3 setup.py install
 # ./deposit.sh install
 # apt install -y jq
+
+echo "Staking tool now installed in $HOME/pulse-staking-deposit-cli"
+
+
+echo "Script completed. Press Y to continue..."
+read -p "Continue? (Y/N): " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    exit
+else
+    exit
+fi

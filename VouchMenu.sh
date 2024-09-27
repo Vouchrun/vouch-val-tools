@@ -7,7 +7,7 @@ show_menu() {
         --menu "Select an option:" 20 70 14 \
         "Setup" "" \
         "  1" "Create Initial Working Directories" \
-     #   "  2" "Set vouch Permissions" \
+        "  2" "Update vouch-val-tools from repo" \
         "  3" "Setup Staking Deposit CLI" \
         "  4" "Backup All Keystores" \
         "Key Management" "" \
@@ -27,7 +27,7 @@ show_menu() {
 
     case $menu_item in
         "  1") ./helpers/create_inital_working_directories.sh ;;
-     #   "  2") ./helpers/set_vouch_perms.sh ;;
+        "  2") ./helpers/update_vouch_tools.sh ;;
         "  3") ./helpers/setup_pulse-staking-deposit-cli ;;
         "  4") sudo ./helpers/backup_all_keystores.sh ;;
         "  5") sudo ./helpers/create_keys_new_mnemonic.sh ;;

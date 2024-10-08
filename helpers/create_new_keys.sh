@@ -14,25 +14,31 @@ cd $HOME/staking-deposit-cli || exit 1
 read -p "Choose an operation: [1] Create Keys Using New Mnemonic Seed [2] Create Keys Using Existing Mnemonic Seed: " option
 
 # Prompt the user to enter the client_ID
-read -p "Enter the value for client_ID (e.g., bk00001): " client_ID
+read -p "Enter the value for Graffiti (e.g., Vouch): " client_ID
 
 # Prompt the user to select chain (mainnet or testnet)
 read -p "Enter 'mainnet' or 'testnet' for the chain: " chain_input
 
-# Set the chain variable based on user input
+# Set the chain, withdrawal address and FeePool variables based on user input
 case $chain_input in
     mainnet)
         chain="pulsechain"
-        directory="$HOME/${client_ID}"
+        directory="$HOME/vouch-keys/${client_ID}"
+        withdrawal_Address="0x369E33C8782A0CeF14d2e9064598CE991f58000"
+        FeePool="0xFEE_POOL"
         ;;
     testnet)
         chain="pulsechain-testnet-v4"
-        directory="$HOME/testnet/${client_ID}"
+        directory="$HOME/vouch-keys/testnet/${client_ID}"
+        withdrawal_Address="0x555E33C8782A0CeF14d2e9064598CE991f58Bc74"
+        FeePool="0x4C14073Fa77e3028cDdC60bC593A8381119e9921"
         ;;
     *)
         echo "Invalid input. Defaulting to testnet."
         chain="pulsechain-testnet-v4"
-        directory="$HOME/testnet/${client_ID}"
+        directory="$HOME/vouch-keys/testnet/${client_ID}"
+        withdrawal_Address="0x555E33C8782A0CeF14d2e9064598CE991f58Bc74"
+        FeePool="0x4C14073Fa77e3028cDdC60bC593A8381119e9921"
         ;;
 esac
 
@@ -43,9 +49,6 @@ if [ ! -d "$directory" ]; then
     exit 1
   }
 fi
-
-# Prompt the user to enter the withdrawal_Address
-read -p "Enter the value for the Withdrawal Address: " withdrawal_Address
 
 # Prompt the user to enter the number of validators to create
 read -p "How many validators would you like to create (default: 50): " vals_To_Create
@@ -88,3 +91,4 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Keys creation completed successfully."
+echo "You MUST set your suggested-fee-recipient correctly to ${FeePool} when running your Validator Client."

@@ -9,7 +9,7 @@ show_menu() {
         "  1" "Create Initial Working Directories" \
         "  2" "Update vouch-val-tools from repo" \
         "  3" "Setup Staking Deposit CLI" \
-        "  4" "Backup All Keystores" \
+        "  4" "Backup (zip) All Keystores" \
         "Key Management" "" \
         "  5" "Create Keys with New Mnemonic" \
         "  6" "Import Keys to Validator Definitions" \

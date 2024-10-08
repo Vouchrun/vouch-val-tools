@@ -14,7 +14,7 @@ cd $HOME && sudo apt update && sudo apt install git && git clone https://github.
 
 ## Run the GUI menu
 ```sh 
-cd vouch-val-tools && find "$HOME/vouch-val-tools" -type f -name "*.sh" -exec chmod +x {} \; && ./VouchMenu.sh
+cd $HOME/vouch-val-tools && find "$HOME/vouch-val-tools" -type f -name "*.sh" -exec chmod +x {} \; && ./vouch-menu.sh
 ```
 
 

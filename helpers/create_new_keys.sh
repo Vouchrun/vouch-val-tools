@@ -1,6 +1,9 @@
 #!/bin/bash
 # create-keys.sh
 
+# Clear the terminal screen
+clear
+
 # Check if staking deposit CLI exists
 if [ ! -x "$HOME/pulse-staking-deposit-cli/deposit.sh" ]; then
     echo "Error: Staking deposit CLI not found. Please make sure it's installed."

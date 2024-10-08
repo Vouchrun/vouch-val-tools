@@ -9,17 +9,12 @@ THIS IS A WORK IN PROGRESS DO NOT USE IN PRODUCTION
 
 ### Clone to your home directory
 ```sh
-cd $HOME
-sudo apt update
-sudo apt install git
-git clone https://github.com/Vouchrun/vouch-val-tools.git
+cd $HOME && sudo apt update && sudo apt install git && git clone https://github.com/Vouchrun/vouch-val-tools.git
 ```
 
 ## Run the GUI menu
 ```sh 
-cd vouch-val-tools
-find "$HOME/vouch-val-tools" -type f -name "*.sh" -exec chmod +x {} \;
-./VouchMenu.sh
+cd vouch-val-tools && find "$HOME/vouch-val-tools" -type f -name "*.sh" -exec chmod +x {} \; && ./VouchMenu.sh
 ```
 
 

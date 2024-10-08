@@ -104,29 +104,31 @@ fi
 deposit_data_file=$(find "$directory/validator_keys" -name "deposit_data-*.json")
 
 # Prompt the user to create separate deposit files
-read -p "Would you like to create separate deposit files? (y/n): " create_separate_files
+read -p "Would you also like to create separate deposit and stake files for each validator index? (y/n): " create_separate_files
 
 if [ "$create_separate_files" = "y" ]; then
     # Parse the deposit data file and create separate deposit files
     index=0
-    chunk_size=10
-    chunk=""
     jq -c '.[]' "$deposit_data_file" | while read -r deposit_data; do
-        chunk+="$deposit_data,"
-        if [ $((index % chunk_size)) -eq $((chunk_size - 1)) ]; then
-            chunk=${chunk%,}
-            echo "[$chunk]" > "$directory/validator_keys/deposit_data-index-$((index / chunk_size)).json"
-            chunk=""
-        fi
+        echo "[$deposit_data]" > "$directory/validator_keys/deposit_data-index-$index.json"
         index=$((index + 1))
         if [ $index -ge $vals_To_Create ]; then
             break
         fi
     done
-    if [ -n "$chunk" ]; then
-        chunk=${chunk%,}
-        echo "[$chunk]" > "$directory/validator_keys/deposit_data-index-$((index / chunk_size)).json"
-    fi
+
+    # Find the stake_data file
+    stake_data_file=$(find "$directory/validator_keys" -name "stake_data-*.json")
+
+    # Parse the stake data file and create separate stake files
+    index=0
+    jq -c '.[]' "$stake_data_file" | while read -r stake_data; do
+        echo "[$stake_data]" > "$directory/validator_keys/stake_data-index-$index.json"
+        index=$((index + 1))
+        if [ $index -ge $vals_To_Create ]; then
+            break
+        fi
+    done
 fi
 
 echo "Your Keys creation completed successfully."

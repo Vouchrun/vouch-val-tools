@@ -7,6 +7,12 @@ if [ ! -x "$HOME/pulse-staking-deposit-cli/deposit.sh" ]; then
     exit 1
 fi
 
+# Check if jq is installed
+if ! command -v jq &> /dev/null; then
+    echo "jq is not installed. Please install jq to proceed."
+    exit 1
+fi
+
 # Navigate to the directory where the staking deposit CLI is located
 cd $HOME/pulse-staking-deposit-cli || exit 1
 

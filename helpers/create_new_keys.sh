@@ -2,13 +2,13 @@
 # create-keys.sh
 
 # Check if staking deposit CLI exists
-if [ ! -x "$HOME/staking-deposit-cli/deposit.sh" ]; then
+if [ ! -x "$HOME/pulse-staking-deposit-cli/deposit.sh" ]; then
     echo "Error: Staking deposit CLI not found. Please make sure it's installed."
     exit 1
 fi
 
 # Navigate to the directory where the staking deposit CLI is located
-cd $HOME/staking-deposit-cli || exit 1
+cd $HOME/pulse-staking-deposit-cli || exit 1
 
 # Prompt the user to select the operation
 read -p "Choose an operation: [1] Create Keys Using New Mnemonic Seed [2] Create Keys Using Existing Mnemonic Seed: " option

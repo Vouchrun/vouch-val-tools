@@ -11,7 +11,7 @@ show_menu() {
         "  3" "Setup Staking Deposit CLI" \
         "  4" "Backup (zip) All Keystores" \
         "Key Management" "" \
-        "  5" "Create Keys with New Mnemonic" \
+        "  5" "Create Valdiator Keys" \
         "  6" "Import Keys to Validator Definitions" \
         "  7" "Update Working Validator Definitions File" \
         "Exit Validators" "" \
@@ -29,8 +29,8 @@ show_menu() {
         "  1") ./helpers/create_inital_working_directories.sh ;;
         "  2") ./helpers/update_vouch_tools.sh ;;
         "  3") ./helpers/setup_pulse-staking-deposit-cli ;;
-        "  4") sudo ./helpers/backup_all_keystores.sh ;;
-        "  5") sudo ./helpers/create_keys_new_mnemonic.sh ;;
+        "  4") ./helpers/backup_all_keystores.sh ;;
+        "  5") ./helpers/create_new_keys.sh ;;
         "  6") sudo ./helpers/import_keys_to_validator_definitions.sh ;;
         "  7") sudo ./helpers/update_working_validator_definitions_file.sh ;;
         "  8") sudo ./helpers/exit_validators.sh ;;

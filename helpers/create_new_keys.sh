@@ -65,7 +65,7 @@ esac
 # Run the deposit.sh script with the specified parameters
 if [ $option -eq 1 ]; then
     # New mnemonic option
-    ./deposit.sh new-mnemonic \
+    PYTHONPATH=$HOME/pulse-staking-deposit-cli $HOME/pulse-staking-deposit-cli/deposit.sh new-mnemonic \
     --num_validators="${vals_To_Create}" \
     --mnemonic_language=english \
     --chain="${chain}" \
@@ -73,7 +73,7 @@ if [ $option -eq 1 ]; then
     --eth1_withdrawal_address="${withdrawal_Address}"
 elif [ $option -eq 2 ]; then
     # Existing mnemonic option
-    ./deposit.sh existing-mnemonic \
+    PYTHONPATH=$HOME/pulse-staking-deposit-cli $HOME/pulse-staking-deposit-cli/deposit.sh existing-mnemonic \
     --num_validators="${vals_To_Create}" \
     --validator_start_index="$startIndex" \
     --chain="${chain}" \

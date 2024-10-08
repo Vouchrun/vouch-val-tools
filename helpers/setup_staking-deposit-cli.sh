@@ -15,7 +15,7 @@ sudo -i apt install python3-pip
 sudo -i pip3 install -r $HOME/pulse-staking-deposit-cli/requirements.txt
 sudo -i python3 $HOME/pulse-staking-deposit-cli/setup.py install
 # ./deposit.sh install
-# apt install -y jq
+sudo -i apt install -y jq
 
 echo "Staking tool now installed in $HOME/pulse-staking-deposit-cli"
 

@@ -10,6 +10,7 @@ fi
 # Check if jq is installed
 if ! command -v jq &> /dev/null; then
     echo "jq is not installed. Please install jq to proceed."
+    echo "Running "Setup Staking Deposit CLI" from the menu will do this ."
     exit 1
 fi
 
@@ -105,13 +106,24 @@ read -p "Would you like to create separate deposit files? (y/n): " create_separa
 if [ "$create_separate_files" = "y" ]; then
     # Parse the deposit data file and create separate deposit files
     index=0
+    chunk_size=10
+    chunk=""
     jq -c '.[]' "$deposit_data_file" | while read -r deposit_data; do
-        echo "$deposit_data" > "$directory/validator_keys/deposit_data-index-$index.json"
+        chunk+="$deposit_data,"
+        if [ $((index % chunk_size)) -eq $((chunk_size - 1)) ]; then
+            chunk=${chunk%,}
+            echo "[$chunk]" > "$directory/validator_keys/deposit_data-index-$((index / chunk_size)).json"
+            chunk=""
+        fi
         index=$((index + 1))
         if [ $index -ge $vals_To_Create ]; then
             break
         fi
     done
+    if [ -n "$chunk" ]; then
+        chunk=${chunk%,}
+        echo "[$chunk]" > "$directory/validator_keys/deposit_data-index-$((index / chunk_size)).json"
+    fi
 fi
 
 echo "Your Keys creation completed successfully."

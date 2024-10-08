@@ -90,6 +90,23 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Find the deposit_data file
+deposit_data_file=$(find "$directory/validator_keys" -name "deposit_data-*.json")
+
+# Prompt the user to create separate deposit files
+read -p "Would you like to create separate deposit files? (y/n): " create_separate_files
+
+if [ "$create_separate_files" = "y" ]; then
+    # Parse the deposit data file and create separate deposit files
+    index=0
+    jq -c '.[]' "$deposit_data_file" | while read -r deposit_data; do
+        echo "$deposit_data" > "$directory/validator_keys/deposit_data-index-$index.json"
+        index=$((index + 1))
+        if [ $index -ge $vals_To_Create ]; then
+            break
+        fi
+    done
+fi
 
 echo "Your Keys creation completed successfully."
 

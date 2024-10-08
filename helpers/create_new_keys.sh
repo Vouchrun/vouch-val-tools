@@ -108,11 +108,11 @@ read -p "Would you also like to create separate deposit and stake files for each
 
 if [ "$create_separate_files" = "y" ]; then
     # Parse the deposit data file and create separate deposit files
-    index=0
+    index=$startIndex
     jq -c '.[]' "$deposit_data_file" | while read -r deposit_data; do
         echo "[$deposit_data]" > "$directory/validator_keys/deposit_data-index-$index.json"
         index=$((index + 1))
-        if [ $index -ge $vals_To_Create ]; then
+        if [ $((index - startIndex)) -ge $vals_To_Create ]; then
             break
         fi
     done
@@ -121,11 +121,11 @@ if [ "$create_separate_files" = "y" ]; then
     stake_data_file=$(find "$directory/validator_keys" -name "stake_data-*.json")
 
     # Parse the stake data file and create separate stake files
-    index=0
+    index=$startIndex
     jq -c '.[]' "$stake_data_file" | while read -r stake_data; do
         echo "[$stake_data]" > "$directory/validator_keys/stake_data-index-$index.json"
         index=$((index + 1))
-        if [ $index -ge $vals_To_Create ]; then
+        if [ $((index - startIndex)) -ge $vals_To_Create ]; then
             break
         fi
     done

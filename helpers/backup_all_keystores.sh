@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define directory paths
-source_directory="/blockchain"
-destination_directory="/blockchain"
+source_directory="$HOME/vouch-keys"
+destination_directory="$HOME/vouch-keys"
 
 # Check if source directory exists
 if [ ! -d "$source_directory" ]; then

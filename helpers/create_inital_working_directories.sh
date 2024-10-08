@@ -3,8 +3,8 @@
 # create_inital_working_directories
 
 
-mkdir $HOME/vouch
-echo "vouch directory created under $HOME/vouch"
+mkdir $HOME/vouch-keys
+echo "vouch-keys directory created at $HOME/vouch-keys"
 
 
 echo "Script completed. Press Y to continue..."

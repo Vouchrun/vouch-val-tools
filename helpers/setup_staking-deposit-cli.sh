@@ -12,8 +12,8 @@ cd pulse-staking-deposit-cli
 sudo -i add-apt-repository universe
 sudo -i apt update
 sudo -i apt install python3-pip
-sudo -i pip3 install -r requirements.txt
-sudo -i python3 setup.py install
+sudo -i pip3 install -r $HOME/pulse-staking-deposit-cli/requirements.txt
+sudo -i python3 $HOME/pulse-staking-deposit-cli/setup.py install
 # ./deposit.sh install
 # apt install -y jq
 

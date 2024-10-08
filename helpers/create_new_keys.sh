@@ -1,14 +1,14 @@
 #!/bin/bash
 # create-keys.sh
 
-# Clear the terminal screen
-clear
-
 # Check if staking deposit CLI exists
 if [ ! -x "$HOME/pulse-staking-deposit-cli/deposit.sh" ]; then
     echo "Error: Staking deposit CLI not found. Please make sure it's installed."
     exit 1
 fi
+
+# Navigate to the directory where the staking deposit CLI is located
+cd $HOME/pulse-staking-deposit-cli || exit 1
 
 # Prompt the user to select the operation
 read -p "Choose an operation: [1] Create Keys Using New Mnemonic Seed [2] Create Keys Using Existing Mnemonic Seed: " option
@@ -90,19 +90,9 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Find the deposit_data file
-deposit_data_file=$(find "$directory/validator_keys" -name "deposit_data-*.json")
 
-# Prompt the user to create separate deposit files
-read -p "Would you like to create separate deposit files? (y/n): " create_separate_files
+echo "Your Keys creation completed successfully."
 
-if [ "$create_separate_files" = "y" ]; then
-    # Parse the deposit data file and create separate deposit files
-    jq -c '.[]' "$deposit_data_file" | while read -r deposit_data; do
-        echo "$deposit_data" > "$directory/validator_keys/deposit_data-index-$startIndex.json"
-        startIndex=$((startIndex + 1))
-    done
-fi
-
-echo "Keys creation completed successfully."
-echo "You MUST set your suggested-fee-recipient correctly to ${FeePool} when running your Validator Client."
+echo "IMPORTANT READ THIS"
+echo "1. You MUST set your suggested-fee-recipient correctly to ${FeePool} when running your Validator Client."
+echo "2. You will find your deposit file and staking file with your new Keys, use these in the app at https://val.vouch.run"

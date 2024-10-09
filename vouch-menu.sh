@@ -24,7 +24,7 @@ show_menu() {
 
     case $menu_item in
         "  1") ./helpers/create_inital_working_directories.sh ;;
-        "  2") ./helpers/setup_pulse-staking-deposit-cli ;;
+        "  2") ./helpers/setup_pulse-staking-deposit-cli.sh ;;
         "  3") ./helpers/create_new_keys.sh ;;
         "  4") ./helpers/backup_all_keystores.sh ;;
         "  5") ./helpers/update_vouch_tools.sh ;;

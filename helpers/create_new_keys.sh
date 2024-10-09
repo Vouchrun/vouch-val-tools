@@ -36,8 +36,8 @@ case $chain_input in
     mainnet)
         chain="pulsechain"
         directory="$HOME/vouch-keys/${client_ID}"
-        withdrawal_Address="0x555E33C8782A0CeF14d2e9064598CE991f58B000"
-        FeePool="0x555E33C8782A0CeF14d2e9064598CE991f58BFEE"
+        withdrawal_Address="0x555E33C8782A0CeF14d2e9064598CE991f58Bc74"
+        FeePool="0xFEEPOOL"
         ;;
     testnet)
         chain="pulsechain-testnet-v4"
@@ -165,8 +165,9 @@ if [ "$create_separate_files" = "y" ]; then
     done
 fi
 
-echo "Your Keys, Deposit and Staking file creation completed successfully."
+echo "........OK"
 echo ""
+echo "Your Keys, Deposit and Staking file creation completed successfully."
 echo ""
 echo ""
 echo ""
@@ -174,9 +175,10 @@ echo "IMPORTANT - Final Notes"
 echo ""
 echo "1. You MUST set your suggested-fee-recipient correctly to ${FeePool} when running your Validator Client."
 echo ""
-echo "2. Your deposit and staking files are located with your new Keys. "
-echo "For more informattion on using these files go to https://vouch.run"
+echo "2. Make sure you run the Ejector Client on your Validator."
 echo ""
+echo "3. Your deposit and staking files are located with your new Keys. "
 echo ""
+echo "For more information go to https://vouch.run"
 echo ""
 read -p "Press Enter to continue..."

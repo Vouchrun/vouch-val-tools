@@ -36,8 +36,8 @@ case $chain_input in
     mainnet)
         chain="pulsechain"
         directory="$HOME/vouch-keys/${client_ID}"
-        withdrawal_Address="0x369E33C8782A0CeF14d2e9064598CE991f58000"
-        FeePool="0xFEE_POOL"
+        withdrawal_Address="0x555E33C8782A0CeF14d2e9064598CE991f58B000"
+        FeePool="0x555E33C8782A0CeF14d2e9064598CE991f58BFEE"
         ;;
     testnet)
         chain="pulsechain-testnet-v4"

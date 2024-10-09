@@ -69,22 +69,20 @@ vals_To_Create=${vals_To_Create:-10}
 # Clear the terminal screen
 clear
 
+echo "README"
 echo ""
-echo "NOTE 1:"
+echo "NOTE 1: - Setting Withdrawal Address"
 echo "In the next step you will be asked about your withdrawal address"
 echo "it is critical that you use the Vouch withdrawal contract address,"
 echo "this address will be auto-filled based on the network you select"
 echo "make sure to copy and paste the Vouch withdrawal contact adderess"
 echo "when prompted to do so."
 echo ""
-echo ""
-echo ""
-echo "NOTE 2:"
+echo "NOTE 2: -  Entering Deposit Amount"
 echo "You will also be prompted for the validator deposit amount"
 echo "this needs to be 12000000 (12Mil Pulse) for a solo validator."
 echo "Use the correct amount so your deposit will be successful"
-echo ""
-echo ""
+
 
 
 

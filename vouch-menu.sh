@@ -7,12 +7,12 @@ show_menu() {
         --no-ok --no-cancel \
         --menu "Select an option:" 20 70 14 \
         "Setup" "" \
-        "  1" "Create Key Output Directory" \
-        "  2" "Setup Staking Deposit CLI" \
-        "  3" "Create Valdiator Keys" \
-        "  4" "Backup (zip) All Keystores and Files" \
+        "  1" "Step.1 - Create Key Output Directory" \
+        "  2" "Step.2 - Setup Staking Deposit CLI" \
+        "  3" "Step.3 - Create Valdiator Keys" \
+        "  4" "Optional - Backup (zip) All Keystores and Files" \
         "Vouch-Val Tool Commands" "" \
-        "  5" "Update vouch-val-tools from repo" \
+        "  5" "Update Vouch-Val-tool" \
         "  6" "Exit" 2>menu_choice.txt
 
     cat menu_choice.txt  # Debugging: Print the contents of menu_choice.txt

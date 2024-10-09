@@ -66,6 +66,19 @@ fi
 read -p "How many validators would you like to create (default: 10): " vals_To_Create
 vals_To_Create=${vals_To_Create:-10}
 
+# Clear the terminal screen
+clear
+
+echo ""
+echo "NOTE:"
+echo "In the next step you will be asked about your withdrawal address"
+echo "it is critical that you use the Vouch withdrawal contract address"
+echo "this address will be auto-filled based on the network you select"
+echo "make sure to copy and paste the Vouch withdrawal contact adderess"
+echo "when prompted to do so."
+echo ""
+echo ""
+
 # Prompt the user for the start index (only for existing mnemonic option)
 startIndex=${startIndex:-0}
 case $option in

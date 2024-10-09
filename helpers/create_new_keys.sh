@@ -21,13 +21,15 @@ fi
 cd $HOME/pulse-staking-deposit-cli || exit 1
 
 # Prompt the user to select the operation
-read -p "Choose an operation: [1] Create Keys Using New Mnemonic Seed [2] Create Keys Using Existing Mnemonic Seed: " option
+read -p "Create Keys Using: [1] New Mnemonic Seed [2] Existing Mnemonic Seed: " option
 
 # Prompt the user to enter the client_ID
-read -p "Enter the value for Graffiti (e.g., Vouch): " client_ID
+read -p "Enter the value for Graffiti (e.g., Vouch) [default: Vouch.run]: " client_ID
+client_ID=${client_ID:-Vouch.run}
 
 # Prompt the user to select chain (mainnet or testnet)
-read -p "Enter 'mainnet' or 'testnet' for the chain: " chain_input
+read -p "Enter 'mainnet' or 'testnet' for the chain [default: mainnet]: " chain_input
+chain_input=${chain_input:-mainnet}
 
 # Set the chain, withdrawal address and FeePool variables based on user input
 case $chain_input in
@@ -61,8 +63,8 @@ if [ ! -d "$directory" ]; then
 fi
 
 # Prompt the user to enter the number of validators to create
-read -p "How many validators would you like to create (default: 50): " vals_To_Create
-vals_To_Create=${vals_To_Create:-50}
+read -p "How many validators would you like to create (default: 10): " vals_To_Create
+vals_To_Create=${vals_To_Create:-10}
 
 # Prompt the user for the start index (only for existing mnemonic option)
 startIndex=${startIndex:-0}
@@ -132,7 +134,10 @@ if [ "$create_separate_files" = "y" ]; then
 fi
 
 echo "Your Keys creation completed successfully."
-
+echo ""
+echo ""
+echo ""
+echo ""
 echo "IMPORTANT READ THIS"
 echo "1. You MUST set your suggested-fee-recipient correctly to ${FeePool} when running your Validator Client."
 echo "2. You will find your deposit file and staking file with your new Keys, use these in the app at https://val.vouch.run"

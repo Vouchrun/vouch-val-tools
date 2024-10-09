@@ -18,12 +18,20 @@ zip -r "$zip_file" "$source_directory"
 
 # Check if zip operation was successful
 if [ $? -eq 0 ]; then
+    clear
+    echo ""
+    echo ""
     echo "Directory '$source_directory' zipped successfully."
     echo "Zip file saved as '$zip_file'."
 else
+    clear
+    echo ""
+    echo ""
     echo "Error: Failed to zip directory '$source_directory'."
     exit 1
 fi
+
+
 
 echo ""
 read -p "Press Enter to continue..."

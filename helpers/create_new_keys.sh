@@ -66,6 +66,14 @@ fi
 read -p "How many validators would you like to create (default: 10): " vals_To_Create
 vals_To_Create=${vals_To_Create:-10}
 
+# Prompt the user for the start index (only for existing mnemonic option)
+startIndex=${startIndex:-0}
+case $option in
+    2)
+        read -p "Enter the start index for the validators: " startIndex
+        ;;
+esac
+
 # Clear the terminal screen
 clear
 
@@ -84,14 +92,6 @@ echo "this needs to be 12000000 (12Mil Pulse) for a solo validator."
 echo "Use the correct amount so your deposit will be successful"
 echo ""
 
-
-# Prompt the user for the start index (only for existing mnemonic option)
-startIndex=${startIndex:-0}
-case $option in
-    2)
-        read -p "Enter the start index for the validators: " startIndex
-        ;;
-esac
 
 # Run the deposit.sh script with the specified parameters
 if [ $option -eq 1 ]; then

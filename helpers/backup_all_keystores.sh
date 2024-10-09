@@ -25,4 +25,9 @@ else
     exit 1
 fi
 
+echo ""
+read -p "Press Enter to continue..."
+
+
+
 exit 0

@@ -62,17 +62,6 @@ if [ ! -d "$directory" ]; then
   }
 fi
 
-# Prompt the user to enter the number of validators to create
-read -p "How many validators would you like to create (default: 10): " vals_To_Create
-vals_To_Create=${vals_To_Create:-10}
-
-# Prompt the user for the start index (only for existing mnemonic option)
-startIndex=${startIndex:-0}
-case $option in
-    2)
-        read -p "Enter the start index for the validators: " startIndex
-        ;;
-esac
 
 # Clear the terminal screen
 clear
@@ -80,7 +69,7 @@ clear
 echo "README"
 echo ""
 echo "NOTE 1: - Setting Withdrawal Address"
-echo "In the next step you will be asked about your withdrawal address"
+echo "In the next steps you will be asked about your withdrawal address"
 echo "it is critical that you use the Vouch withdrawal contract address,"
 echo "this address will be auto-filled based on the network you select"
 echo "make sure to copy and paste the Vouch withdrawal contact address"
@@ -92,6 +81,20 @@ echo "this needs to be 12000000 (12Mil Pulse) for a solo validator."
 echo "Use the correct amount so your deposit will be successful"
 echo ""
 
+
+
+
+# Prompt the user to enter the number of validators to create
+read -p "How many validators would you like to create (default: 10): " vals_To_Create
+vals_To_Create=${vals_To_Create:-10}
+
+# Prompt the user for the start index (only for existing mnemonic option)
+startIndex=${startIndex:-0}
+case $option in
+    2)
+        read -p "Enter the start index for the validators: " startIndex
+        ;;
+esac
 
 # Run the deposit.sh script with the specified parameters
 if [ $option -eq 1 ]; then
@@ -131,7 +134,7 @@ echo ""
 echo "OPTIONAL - Generate Multiple Deposit and Stake Files"
 echo ""
 echo "If you would like to have more control over the deposit and staking"
-echo "process you can have this tool create a deposit and staking file"
+echo "process you can have this tool create additional deposit and staking files"
 echo "for each of your validator keys."
 echo ""
 echo ""
@@ -162,12 +165,12 @@ if [ "$create_separate_files" = "y" ]; then
     done
 fi
 
-echo "Your Keys creation completed successfully."
+echo "Your Keys, Deposit and Staking file creation completed successfully."
 echo ""
 echo ""
 echo ""
 echo ""
-echo "IMPORTANT READ THIS"
+echo "IMPORTANT - Final Notes"
 echo ""
 echo "1. You MUST set your suggested-fee-recipient correctly to ${FeePool} when running your Validator Client."
 echo ""

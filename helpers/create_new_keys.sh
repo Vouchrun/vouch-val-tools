@@ -70,14 +70,24 @@ vals_To_Create=${vals_To_Create:-10}
 clear
 
 echo ""
-echo "NOTE:"
+echo "NOTE 1:"
 echo "In the next step you will be asked about your withdrawal address"
-echo "it is critical that you use the Vouch withdrawal contract address"
+echo "it is critical that you use the Vouch withdrawal contract address,"
 echo "this address will be auto-filled based on the network you select"
 echo "make sure to copy and paste the Vouch withdrawal contact adderess"
 echo "when prompted to do so."
 echo ""
 echo ""
+echo ""
+echo "NOTE 2:"
+echo "You will also be prompted for the validator deposit amount"
+echo "this needs to be 12000000 (12Mil Pulse) for a solo validator."
+echo "Use the correct amount so your deposit will be successful"
+echo ""
+echo ""
+
+
+
 
 # Prompt the user for the start index (only for existing mnemonic option)
 startIndex=${startIndex:-0}
@@ -118,7 +128,17 @@ fi
 # Find the deposit_data file
 deposit_data_file=$(find "$directory/validator_keys" -name "deposit_data-*.json")
 
+
 # Prompt the user to create separate deposit files
+echo ""
+echo ""
+echo "OPTIONAL - Generate Multiple Deposit and Stake Files"
+echo ""
+echo "If you would like to have more control over the deposit and staking"
+echo "process you can have this tool create a deposit and staking file"
+echo "for each of your validator keys."
+echo ""
+echo ""
 read -p "Would you also like to create separate deposit and stake files for each validator index? (y/n): " create_separate_files
 
 if [ "$create_separate_files" = "y" ]; then
@@ -152,5 +172,11 @@ echo ""
 echo ""
 echo ""
 echo "IMPORTANT READ THIS"
+echo ""
 echo "1. You MUST set your suggested-fee-recipient correctly to ${FeePool} when running your Validator Client."
-echo "2. You will find your deposit file and staking file with your new Keys, use these in the app at https://val.vouch.run"
+echo ""
+echo "2. Your deposit and staking files are located with your new Keys. "
+echo "For more informattion on using these files go to https://vouch.run"
+echo ""
+echo ""
+echo ""

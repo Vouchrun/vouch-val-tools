@@ -3,20 +3,17 @@
 # Function to display the main menu
 show_menu() {
     dialog --clear --no-tags --backtitle "Script Runner" \
-        --title "Main Menu" \
+        --title "Vouch-Val Tool - Main Menu" \
+        --no-ok --no-cancel \
         --menu "Select an option:" 20 70 14 \
         "Setup" "" \
-        "  1" "Create Initial Working Directories" \
-        "  2" "Update vouch-val-tools from repo" \
-        "  3" "Setup Staking Deposit CLI" \
-        "  4" "Backup (zip) All Keystores" \
-        "Key Management" "" \
-        "  5" "Create Valdiator Keys" \
-        "  6" "Import Keys to Validator Definitions" \
-        "  7" "Update Working Validator Definitions File" \
-        "Exit Validators" "" \
-        "  8" "Exit Validators" \
-        "  9" "Exit" 2>menu_choice.txt
+        "  1" "Create Key Output Directory" \
+        "  2" "Setup Staking Deposit CLI" \
+        "  3" "Create Valdiator Keys" \
+        "  4" "Backup (zip) All Keystores and Files" \
+        "Vouch-Val Tool Commands" "" \
+        "  5" "Update vouch-val-tools from repo" \
+        "  6" "Exit" 2>menu_choice.txt
 
     cat menu_choice.txt  # Debugging: Print the contents of menu_choice.txt
 
@@ -27,14 +24,11 @@ show_menu() {
 
     case $menu_item in
         "  1") ./helpers/create_inital_working_directories.sh ;;
-        "  2") ./helpers/update_vouch_tools.sh ;;
-        "  3") ./helpers/setup_pulse-staking-deposit-cli ;;
+        "  2") ./helpers/setup_pulse-staking-deposit-cli ;;
+        "  3") ./helpers/create_new_keys.sh ;;
         "  4") ./helpers/backup_all_keystores.sh ;;
-        "  5") ./helpers/create_new_keys.sh ;;
-        "  6") sudo ./helpers/import_keys_to_validator_definitions.sh ;;
-        "  7") sudo ./helpers/update_working_validator_definitions_file.sh ;;
-        "  8") sudo ./helpers/exit_validators.sh ;;
-        "  9") clear; exit ;;
+        "  5") ./helpers/update_vouch_tools.sh ;;
+        "  6") clear; exit ;;
         *) echo "Invalid option. Please try again." ;;
     esac
 }

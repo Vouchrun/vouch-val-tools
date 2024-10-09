@@ -75,16 +75,14 @@ echo "NOTE 1: - Setting Withdrawal Address"
 echo "In the next step you will be asked about your withdrawal address"
 echo "it is critical that you use the Vouch withdrawal contract address,"
 echo "this address will be auto-filled based on the network you select"
-echo "make sure to copy and paste the Vouch withdrawal contact adderess"
+echo "make sure to copy and paste the Vouch withdrawal contact address"
 echo "when prompted to do so."
 echo ""
 echo "NOTE 2: -  Entering Deposit Amount"
 echo "You will also be prompted for the validator deposit amount"
 echo "this needs to be 12000000 (12Mil Pulse) for a solo validator."
 echo "Use the correct amount so your deposit will be successful"
-
-
-
+echo ""
 
 
 # Prompt the user for the start index (only for existing mnemonic option)
@@ -178,3 +176,4 @@ echo "For more informattion on using these files go to https://vouch.run"
 echo ""
 echo ""
 echo ""
+read -p "Press Enter to continue..."

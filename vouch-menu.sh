@@ -2,7 +2,7 @@
 
 # Function to display the main menu
 show_menu() {
-    dialog --clear --no-tags --backtitle "Script Runner" \
+    dialog --clear --no-tags --backtitle "Vouch.run" \
         --title "Vouch-Val Tool - Main Menu" \
         --no-ok --no-cancel \
         --menu "Select an option:" 20 70 14 \

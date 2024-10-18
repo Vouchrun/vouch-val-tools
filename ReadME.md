@@ -4,9 +4,6 @@ This repo provoides a menu driven tool for assiting Pulschain Validators with th
 
 ## Installation Instructions
 
-THIS IS A WORK IN PROGRESS DO NOT USE IN PRODUCTION
-
-
 ### Clone to your home directory
 ```sh
 cd $HOME && sudo apt update && sudo apt install git && git clone https://github.com/Vouchrun/vouch-val-tools.git

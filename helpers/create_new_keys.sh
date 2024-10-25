@@ -24,7 +24,7 @@ cd $HOME/pulse-staking-deposit-cli || exit 1
 read -p "Create Keys Using: [1] New Mnemonic Seed [2] Existing Mnemonic Seed: " option
 
 # Prompt the user to enter the client_ID
-read -p "Enter the value for Graffiti (e.g., Vouch) [default: Vouch.run]: " client_ID
+read -p "Enter the value for Graffiti [default: Vouch.run]: " client_ID
 client_ID=${client_ID:-Vouch.run}
 
 # Prompt the user to select chain (mainnet or testnet)

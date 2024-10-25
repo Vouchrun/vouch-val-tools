@@ -10,10 +10,11 @@ show_menu() {
         "  1" "Step.1 - Create Key Output Directory" \
         "  2" "Step.2 - Setup Staking Deposit CLI" \
         "  3" "Step.3 - Create Valdiator Keys" \
-        "  4" "Optional - Backup (zip) All Keystores and Files" \
+        "  4" "Optional - Generate validator_definitions.yml File" \
+        "  5" "Optional - Backup (zip) All Keystores and Files" \
         "Vouch-Val Tool Commands" "" \
-        "  5" "Update Vouch-Val-tool" \
-        "  6" "Exit" 2>menu_choice.txt
+        "  6" "Update Vouch-Val-tool" \
+        "  7" "Exit" 2>menu_choice.txt
 
     cat menu_choice.txt  # Debugging: Print the contents of menu_choice.txt
 
@@ -26,9 +27,10 @@ show_menu() {
         "  1") ./helpers/create_inital_working_directories.sh ;;
         "  2") ./helpers/setup_pulse-staking-deposit-cli.sh ;;
         "  3") ./helpers/create_new_keys.sh ;;
-        "  4") ./helpers/backup_all_keystores.sh ;;
-        "  5") ./helpers/update_vouch_tools.sh ;;
-        "  6") clear; exit ;;
+        "  4") ./helpers/generate_validator_definitions_file.sh ;;
+        "  5") ./helpers/backup_all_keystores.sh ;;
+        "  6") ./helpers/update_vouch_tools.sh ;;
+        "  7") clear; exit ;;
         *) echo "Invalid option. Please try again." ;;
     esac
 }
@@ -49,6 +51,26 @@ then
         fi
     else
         echo "Exiting script. Please install dialog manually to run this script."
+        exit
+    fi
+fi
+
+# Ensure jq is installed
+if ! command -v jq &> /dev/null
+then
+    echo "jq could not be found. This script requires jq to run."
+    read -p "Would you like to install jq? (Y/N): " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        if [ "$(uname)" == "Darwin" ]; then
+            brew install jq
+        else
+            sudo apt-get update
+            sudo apt-get install -y jq
+        fi
+    else
+        echo "Exiting script. Please install jq manually to run this script."
         exit
     fi
 fi

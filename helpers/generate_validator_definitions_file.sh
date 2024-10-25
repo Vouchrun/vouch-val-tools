@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+# Clear the terminal screen
+clear
+
 # Check if jq is installed
 if ! command -v jq &> /dev/null; then
     echo "jq is not installed. Please install jq to proceed."
@@ -187,3 +191,14 @@ echo ""
 echo "Validator definitions added to file at: $existing_output_path"
 echo "If you move these keystores to another directory on your validator,"
 echo "ensure you edit the keystore and password file paths in the definitions file"
+
+
+echo "Script completed. Press Y to continue..."
+read -p "Continue? (Y/N): " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    exit
+else
+    exit
+fi

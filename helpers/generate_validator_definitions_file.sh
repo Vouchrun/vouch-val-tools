@@ -115,6 +115,10 @@ if [ "$create_password_file" == "yes" ]; then
   echo "Password file created: $default_password_file_path"
 fi
 
+# Set the voting_keystore_password_path
+voting_keystore_password_path=$default_password_file_path
+
+
 # Set output path for validator_definitions.yml file
 existing_output_path=$default_output_path
 

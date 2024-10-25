@@ -12,8 +12,8 @@ fi
 
 
 # Prompt the user to enter the client_ID
-echo "Enter the Validator Key Graffiti You Used Generate Your Keys in the previous steps"
-read -p "This value will be used to set the import path [default: Vouch.run]: " client_ID
+echo "Enter the Graffiti value you used to Generate your keys in the previous steps"
+read -p "This value will be used to set the import directory [default: Vouch.run]: " client_ID
 client_ID=${client_ID:-Vouch.run}
 
 # Prompt the user to select chain (mainnet or testnet)

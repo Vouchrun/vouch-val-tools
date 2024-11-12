@@ -184,10 +184,11 @@ exec > >(tee -a "$log_file") 2>&1
 # Iterate through each file in the directory matching the pattern
 file_count=0
 for (( i=$starting_index; i<$(($starting_index + $num_validators)); i++ )); do
+    echo "Processing index $i"
     filename="keystore-m_12381_3600_${i}_0_0-*.json"
     files=("$directory/${filename}")
     if [ ${#files[@]} -eq 0 ]; then
-        echo "No files matching $filename found in directory."
+        echo "No files matching $filename found in directory. Files: ${files[@]}"
     else
         for file in "${files[@]}"; do
             if [ -f "$file" ]; then
@@ -231,3 +232,6 @@ echo "$file_count validators exited."
 
 echo "The log file has been output to: $log_file"
 read -p "Press Enter to continue..."
+
+
+

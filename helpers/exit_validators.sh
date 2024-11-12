@@ -23,8 +23,12 @@ if ! command -v expect &> /dev/null; then
     exit 1
 fi
 
-# Prompt for the client_ID value
-read -p "Enter client_ID value: " client_ID
+# Prompt the user to enter the client_ID
+echo "Enter your Graffiti value (used as key sub-directory path)"
+echo "You can enter a full path later if you customised your key path"
+echo ""
+read -p "Enter your Graffiti value [default: Vouch.run]: " client_ID
+client_ID=${client_ID:-Vouch.run}
 
 # Prompt the user to select chain (mainnet or testnet)
 read -p "Enter 'mainnet' or 'testnet' for the chain: " chain_input
@@ -33,21 +37,25 @@ read -p "Enter 'mainnet' or 'testnet' for the chain: " chain_input
 case $chain_input in
     mainnet)
         chain="pulsechain"
-        directory="/blockchain/bradshawknox/client-val-keys/$client_ID/validator_keys"
-        default_password_file_path="/blockchain/bradshawknox/client-val-keys/$client_ID/$client_ID-validator-pw"
+        default_directory="/blockchain/vouch-keys/$client_ID/validator_keys"
+        default_password_file_path="/blockchain/vouch-keys/$client_ID/$client_ID-validator-pw"
         ;;
     testnet)
         chain="pulsechain-testnet-v4"
-        directory="/blockchain/bradshawknox/client-val-keys/testnet/$client_ID/validator_keys"
-        default_password_file_path="/blockchain/bradshawknox/client-val-keys/testnet/$client_ID/$client_ID-validator-pw"
+        default_directory="/blockchain/vouch-keys/testnet/$client_ID/validator_keys"
+        default_password_file_path="/blockchain/vouch-keys/testnet/$client_ID/$client_ID-validator-pw"
         ;;
     *)
         echo "Invalid input. Defaulting to mainnet."
         chain="pulsechain"
-        directory="/blockchain/bradshawknox/client-val-keys/$client_ID/validator_keys"
-        default_password_file_path="/blockchain/bradshawknox/client-val-keys/$client_ID/$client_ID-validator-pw"
+        default_directory="/blockchain/vouch-keys/$client_ID/validator_keys"
+        default_password_file_path="/blockchain/vouch-keys/$client_ID/$client_ID-validator-pw"
         ;;
 esac
+
+# Prompt for the path to the validator keys
+read -e -p "Enter path to the validator keys (default: $default_directory): " directory
+directory=${directory:-"$default_directory"}
 
 if [[ ! -d "$directory" ]]; then
     echo "Directory '$directory' does not exist. Exiting..."
@@ -55,8 +63,30 @@ if [[ ! -d "$directory" ]]; then
 fi
 
 # Prompt for the voting_keystore_password_path with an option for default value
-read -e -p "Enter voting_keystore_password_path (default: $default_password_file_path): " voting_keystore_password_path
-voting_keystore_password_path=${voting_keystore_password_path:-"$default_password_file_path"}
+password_file_path_set=false
+while [ $password_file_path_set = false ]; do
+    read -e -p "Enter voting_keystore_password_path (default: $default_password_file_path): " voting_keystore_password_path
+    voting_keystore_password_path=${voting_keystore_password_path:-"$default_password_file_path"}
+
+    if [ -f "$voting_keystore_password_path" ]; then
+        password_file_path_set=true
+    else
+        echo "The password file '$voting_keystore_password_path' does not exist."
+        read -p "Would you like to Enter [E] the path again or Create [C] a file? (E/C): " choice
+        case $choice in
+            E|e)
+                ;;
+            C|c)
+                read -s -p "Enter the password to be written to the file: " password
+                echo -n "$password" > "$voting_keystore_password_path"
+                password_file_path_set=true
+                ;;
+            *)
+                echo "Invalid input. Please enter E to enter the path again or C to create a file."
+                ;;
+        esac
+    fi
+done
 
 # Prompt for the number of validators to exit, default to 100 if not provided
 read -p "Enter the number of validators to exit (default: 100): " num_validators

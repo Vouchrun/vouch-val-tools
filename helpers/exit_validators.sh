@@ -49,7 +49,7 @@ while true; do
             break
             ;;
         testnet)
-            chain="pulsechain-testnet-v4"
+            chain="pulsechain_testnet_v4"
             default_directory="/blockchain/vouch-keys/testnet/$client_ID/validator_keys"
             default_password_file_path="/blockchain/vouch-keys/testnet/$client_ID/$client_ID-validator-pw"
             break
@@ -184,8 +184,10 @@ exec > >(tee -a "$log_file") 2>&1
 # Iterate through each file in the directory matching the pattern
 file_count=0
 for (( i=$starting_index; i<$(($starting_index + $num_validators)); i++ )); do
+    echo "Processing index $i"
     filename="keystore-m_12381_3600_${i}_0_0-*.json"
-    files=("$directory/${filename}")
+    files=($directory/$filename)
+    echo "$files"
     if [ ${#files[@]} -eq 0 ]; then
         echo "No files matching $filename found in directory."
     else

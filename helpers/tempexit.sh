@@ -195,6 +195,7 @@ for (( i=$starting_index; i<$(($starting_index + $num_validators)); i++ )); do
                 echo "Processing file: $file"
 
                 # Run the docker exec command with the parsed file using expect to provide the exit phrase
+                echo "Executing expect command:"
                 expect <<EOF
 log_user 1
 set timeout 30
@@ -231,3 +232,6 @@ echo "$file_count validators exited."
 
 echo "The log file has been output to: $log_file"
 read -p "Press Enter to continue..."
+
+
+

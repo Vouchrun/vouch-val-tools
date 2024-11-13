@@ -6,7 +6,7 @@ clear
 # Prompt to run as Sudo
 echo "script needs to be run using root"
 echo ""
-echo "Currently this script only support Lighthouse Client Exits"
+echo "Currently this script only supports Lighthouse Client Exits"
 
 if [ "$EUID" -ne 0 ]; then
   sudo "$0" "$@"

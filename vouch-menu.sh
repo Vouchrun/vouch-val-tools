@@ -14,7 +14,7 @@ show_menu() {
         "  5" " Optional - Backup (zip) All Keystores and Files" \
         "space" "" \
         "Validator Operations" "Validator Operations" \
-        "  6" " Withdraw Validators (Exit)" \
+        "  6" " Withdraw Validators (Exit) - Lighthouse Only" \
         "space" "" \
         "Vouch-Val Tool Commands" "Val-Tools Management" \
         "  7" " Update Val-Tools" \

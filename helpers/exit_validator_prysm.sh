@@ -1,3 +1,5 @@
+#DO NOT RUN THIS, WORK IN PROGRESS ONLY
+
 #!/bin/bash
 
 # Clear the terminal screen
@@ -6,7 +8,7 @@ clear
 # Prompt to run as Sudo
 echo "script needs to be run using root"
 echo ""
-echo "Currently this script only supports Lighthouse Client Exits"
+echo "Currently this script only supports Prysm Client Exits"
 
 if [ "$EUID" -ne 0 ]; then
   sudo "$0" "$@"
@@ -50,7 +52,7 @@ while true; do
             break
             ;;
         testnet)
-            chain="pulsechain_testnet_v4"
+            chain="pulsechain-testnet-v4"
             default_directory="/blockchain/vouch-keys/testnet/$client_ID/validator_keys"
             default_password_file_path="/blockchain/vouch-keys/testnet/$client_ID/$client_ID-validator-pw"
             break
@@ -238,3 +240,32 @@ echo "$file_count validators exited."
 
 echo "The log file has been output to: $log_file"
 read -p "Press Enter to continue..."
+
+
+
+
+## wip
+
+#from prysm docs https://docs.prylabs.network/docs/wallet/exiting-a-validator
+docker run -it -v $HOME/Eth2Validators/prysm-wallet-v2:/wallet \
+  gcr.io/prysmaticlabs/prysm/cmd/prysmctl:latest \
+  validator exit --wallet-dir=/wallet --beacon-rpc-provider=<127.0.0.1:4000> 
+
+
+# gamma example
+sudo docker run -it \
+--net=host \
+--name=validatorexit \
+-v /home/<changeusername>/blockchain:/blockchain \
+registry.gitlab.com/pulsechaincom/prysm-pulse/prysmctl:latest \
+validator exit \ --wallet-dir=/blockchain/consensus/validator \
+--beacon-rpc-provider=127.0.0.1:4000
+
+
+
+# modifty this command
+spawn sudo docker exec -it validator lighthouse --network "$chain" account validator exit --beacon-node http://localhost:5052 --password-file "$voting_keystore_password_path" --keystore $file --datadir "/blockchain"
+
+
+# modified command
+spawn sudo docker run -it --net=host --name=validatorexit -v /home/<changeusername>/blockchain:/blockchain registry.gitlab.com/pulsechaincom/prysm-pulse/prysmctl:latest validator exit \ --wallet-dir=/blockchain/consensus/validator --beacon-rpc-provider=127.0.0.1:4000

@@ -99,6 +99,10 @@ done
 
 # Prompt for the voting_keystore_password_path
 echo ""
+echo "To exit multiple validators, this script calls a password file to automate the process."
+echo "If you used Val-Tools to geneate your validator definitions file you may already this file"
+echo "Next you will be able to select and existing file or create a new file for the exit process."
+echo ""
 read -p "Do you have an existing password file for your validator keys (if unsure select No)? (y/n): " has_password_file
 
 if [ "$has_password_file" = "y" ]; then

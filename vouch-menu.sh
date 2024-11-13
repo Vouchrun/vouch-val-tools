@@ -5,18 +5,20 @@ show_menu() {
     dialog --clear --no-tags --backtitle "Vouch.run" \
         --title "Vouch-Val Tool - Main Menu" \
         --no-ok --no-cancel \
-        --menu "Select an option:" 20 70 16 \
-        "Setup" "" \
-        "  1" "Step.1 - Create Key Output Directory" \
-        "  2" "Step.2 - Setup Staking Deposit CLI" \
-        "  3" "Step.3 - Create Valdiator Keys" \
-        "  4" "Optional - Generate validator_definitions.yml File" \
-        "  5" "Optional - Backup (zip) All Keystores and Files" \
-        "Validator Operations" "" \
-        "  6" "Exit Validators" \
-        "Vouch-Val Tool Commands" "" \
-        "  7" "Update Vouch-Val-tool" \
-        "  8" "Exit" 2>menu_choice.txt
+        --menu "Select an option:" 20 70 20 \
+        "Setup" "Key Generation" \
+        "  1" " Step.1 - Create Key Output Directory" \
+        "  2" " Step.2 - Setup Staking Deposit CLI" \
+        "  3" " Step.3 - Create Valdiator Keys" \
+        "  4" " Optional - Generate validator_definitions.yml File" \
+        "  5" " Optional - Backup (zip) All Keystores and Files" \
+        "space" "" \
+        "Validator Operations" "Validator Operations" \
+        "  6" " Withdraw Validators (Exit)" \
+        "space" "" \
+        "Vouch-Val Tool Commands" "Val-Tools Management" \
+        "  7" " Update Val-Tools" \
+        "  8" " Exit Val-Tools" 2>menu_choice.txt
 
     cat menu_choice.txt  # Debugging: Print the contents of menu_choice.txt
 

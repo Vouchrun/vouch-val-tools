@@ -49,7 +49,7 @@ while true; do
             break
             ;;
         testnet)
-            chain="pulsechain-testnet-v4"
+            chain="pulsechain_testnet_v4"
             default_directory="/blockchain/vouch-keys/testnet/$client_ID/validator_keys"
             default_password_file_path="/blockchain/vouch-keys/testnet/$client_ID/$client_ID-validator-pw"
             break
@@ -98,6 +98,10 @@ while true; do
 done
 
 # Prompt for the voting_keystore_password_path
+echo ""
+echo "To exit multiple validators, this script calls a password file to automate the process."
+echo "If you used Val-Tools to geneate your validator definitions file you may already this file"
+echo "Next you will be able to select and existing file or create a new file for the exit process."
 echo ""
 read -p "Do you have an existing password file for your validator keys (if unsure select No)? (y/n): " has_password_file
 
@@ -184,8 +188,10 @@ exec > >(tee -a "$log_file") 2>&1
 # Iterate through each file in the directory matching the pattern
 file_count=0
 for (( i=$starting_index; i<$(($starting_index + $num_validators)); i++ )); do
+    echo "Processing index $i"
     filename="keystore-m_12381_3600_${i}_0_0-*.json"
-    files=("$directory/${filename}")
+    files=($directory/$filename)
+    echo "$files"
     if [ ${#files[@]} -eq 0 ]; then
         echo "No files matching $filename found in directory."
     else

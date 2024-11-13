@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# WORK IN PROGESS
-
 # Clear the terminal screen
 clear
 
 # Prompt to run as Sudo
 echo "script needs to be run using root"
+echo ""
+echo "Currently this script only support Lighthouse Client Exits"
 
 if [ "$EUID" -ne 0 ]; then
   sudo "$0" "$@"
@@ -30,8 +30,9 @@ echo ""
 echo ""
 
 # Prompt the user to enter the client_ID
-echo "Enter your Graffiti value (used as the key sub-directory path)"
+echo "Let's get started!"
 echo ""
+echo "Enter your Graffiti value (used as the key sub-directory path)"
 echo "NOTE: You can enter a full path later if you customised your key path"
 echo ""
 read -p "Enter your Graffiti value [default: Vouch.run]: " client_ID
@@ -100,8 +101,8 @@ done
 # Prompt for the voting_keystore_password_path
 echo ""
 echo "To exit multiple validators, this script calls a password file to automate the process."
-echo "If you used Val-Tools to geneate your validator definitions file you may already this file"
-echo "Next you will be able to select and existing file or create a new file for the exit process."
+echo "If you used Val-Tools to generate your validator-definitions file you may already this file"
+echo "You will be able to select and existing file or create a new file for the exit process."
 echo ""
 read -p "Do you have an existing password file for your validator keys (if unsure select No)? (y/n): " has_password_file
 
@@ -114,7 +115,7 @@ if [ "$has_password_file" = "y" ]; then
             password_file_path_set=true
         else
             echo "The password file '$voting_keystore_password_path' does not exist."
-            read -p "Would you like to Enter [E] the path again or Create [C] a new file? (E/C): " choice
+            read -p "Would you like to Enter [E] the path again or Create [C] this file? (E/C): " choice
             case $choice in
                 E|e)
                     continue

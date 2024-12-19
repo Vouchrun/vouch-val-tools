@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Clear the terminal screen
+clear
+
 # Define directory paths
 source_directory="$HOME/vouch-keys"
 destination_directory="$HOME/vouch-keys"
@@ -13,8 +16,45 @@ fi
 # Create zip file with current date and time in the filename
 zip_file="$destination_directory/vouch_keystores_$(date +"%Y%m%d_%H%M%S").zip"
 
-# Zip the directory
-zip -r "$zip_file" "$source_directory"
+# Ask user if they want to encrypt the file
+read -p "Do you want to encrypt the file with a password? (yes/no): " encrypt
+
+# Check if user wants to encrypt the file
+encrypt=$(echo "${encrypt,,}" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+
+while [ "$encrypt" != "yes" ] && [ "$encrypt" != "no" ] && [ "$encrypt" != "y" ] && [ "$encrypt" != "n" ]; do
+    echo "Invalid input. Please enter 'yes' or 'no'."
+    read -p "Do you want to encrypt the file with a password? (yes/no): " encrypt
+    encrypt=$(echo "${encrypt,,}" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+done
+
+if [ "$encrypt" = "yes" ] || [ "$encrypt" = "y" ]; then
+    # Prompt user to enter password
+    read -s -p "Enter password: " password
+    echo ""
+
+    # Prompt user to re-enter password
+    read -s -p "Re-enter password: " confirm_password
+    echo ""
+
+    # Check if passwords match
+    if [ "$password" != "$confirm_password" ]; then
+        echo "Error: Passwords do not match."
+        exit 1
+    fi
+
+    # Check if password is blank
+    if [ -z "$password" ]; then
+        echo "Error: Password cannot be blank."
+        exit 1
+    fi
+
+    # Zip the directory with password encryption
+    zip -P "$password" -r "$zip_file" "$source_directory"
+else
+    # Zip the directory without password encryption
+    zip -r "$zip_file" "$source_directory"
+fi
 
 # Check if zip operation was successful
 if [ $? -eq 0 ]; then

@@ -4,9 +4,16 @@
 
 # Download the command line tool for staking on an internet connected computer using git
 cd $HOME
-git clone https://github.com/Vouchrun/pulse-staking-deposit-cli.git
 
-# STUCK HERE NEED TO WORK ON THIS PART SUDO CAUSING PATH ERRORS
+# Pull update if already cloned, else clone the repo
+if [ -d "pulse-staking-deposit-cli" ]; then
+  cd pulse-staking-deposit-cli
+  git pull
+else
+  git clone https://github.com/Vouchrun/pulse-staking-deposit-cli.git
+  cd pulse-staking-deposit-cli
+fi
+
 # Install the staking tool on your clean computer
 cd pulse-staking-deposit-cli
 sudo -i add-apt-repository universe

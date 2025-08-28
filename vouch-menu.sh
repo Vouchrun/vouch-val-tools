@@ -8,7 +8,7 @@ show_menu() {
         --menu "Select an option:" 20 70 20 \
         "Setup" "Key Generation" \
         "  1" " Step.1 - Create Key Output Directory" \
-        "  2" " Step.2 - Setup Staking Deposit CLI" \
+        "  2" " Step.2 - Setup/Update Staking Deposit CLI" \
         "  3" " Step.3 - Create Valdiator Keys" \
         "  4" " Optional - Generate validator_definitions.yml File" \
         "  5" " Optional - Backup (zip) All Keystores and Files" \

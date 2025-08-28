@@ -37,7 +37,7 @@ case $chain_input in
         chain="pulsechain"
         directory="$HOME/vouch-keys/${client_ID}"
         withdrawal_Address="0x1F082785Ca889388Ce523BF3de6781E40b99B060"
-        FeePool="0x5eAd01d58067a68D0D700374500580eC5C961D0d"
+        FeePool="0x9325008eE3B5982c10010C8f12b6CD4943F48fA6"
         ;;
     testnet)
         chain="pulsechain-testnet-v4"

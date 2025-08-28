@@ -26,7 +26,7 @@ case $chain_input in
         directory="$HOME/vouch-keys/$client_ID/validator_keys/"
         default_password_file_path="$HOME/vouch-keys/$client_ID/$client_ID-validator-pw"
         default_output_path="$HOME/vouch-keys/$client_ID/validator_definitions.yml"
-        suggested_fee_recipient=0x5eAd01d58067a68D0D700374500580eC5C961D0d
+        suggested_fee_recipient=0x9325008eE3B5982c10010C8f12b6CD4943F48fA6
         ;;
     testnet)
         directory="$HOME/vouch-keys/testnet/$client_ID/validator_keys/"
